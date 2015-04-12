@@ -26,7 +26,6 @@ var App = React.createClass({
         return (
             <div id="chatbox-container">
                 <div id="chat-main-container" className={ this.state.visible ? 'visible' : 'hidden' }>
-                    <div id="chat-second-bg"></div>
                     <ChatMessages />
                     <ChatForm />
                 </div>

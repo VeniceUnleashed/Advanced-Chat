@@ -59,7 +59,8 @@ body, html {
   box-sizing: border-box;
   transition: opacity 200ms ease;
 
-  #chat-second-bg {
+  &::before {
+    content: '';
     position: absolute;
     top: 13px;
     left: 0;
@@ -69,6 +70,7 @@ body, html {
     height: 164px;
     background: transparent;
     box-shadow: inset 0 0 20px 5px rgba(0, 37, 60, 0.17), 0 0 20px 5px rgba(0, 37, 60, 0.17);
+    z-index: -1;
   }
 
   &.hidden {
@@ -132,28 +134,28 @@ body, html {
 
       &.all {
         .author {
-          text-shadow: 0 0 6px #1551a0;
+          text-shadow: 0 0 6px #002A61;
         }
       }
 
       &.team {
         .author {
-          color: #d0f184;
-          text-shadow: 0 0 6px #368900;
+          color: #D8FF80;
+          text-shadow: 0 0 6px #245C00;
         }
       }
 
       &.enemy {
         .author {
-          color: #efba84;
-          text-shadow: 0 0 6px #962f00;
+          color: #FFBE7B;
+          text-shadow: 0 0 6px #B33800;
         }
       }
 
       &.squad {
         .author {
-          color: rgba(144, 231, 244, 0.88);
-          text-shadow: 0 0 6px #0051a2;
+          color: #74edff;
+          text-shadow: 0 0 6px #0055AA;
         }
       }
     }

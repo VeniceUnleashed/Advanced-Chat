@@ -67,12 +67,29 @@ var ChatForm = React.createClass({
 
     OnKeyDown: function(p_Event)
     {
-        if (p_Event.keyCode != 27)
+        if (p_Event.keyCode == 27)
+        {
+            // User pressed escape. Disable typing.
+            p_Event.preventDefault();
+            AdvancedChat.trigger('disable_typing');
             return;
+        }
 
-        // User pressed escape. Disable typing.
-        p_Event.preventDefault();
-        AdvancedChat.trigger('disable_typing');
+        if (p_Event.keyCode == 38)
+        {
+            // User pressed up. Scroll chat up.
+            p_Event.preventDefault();
+            AdvancedChat.trigger('scroll_up');
+            return;
+        }
+
+        if (p_Event.keyCode == 40)
+        {
+            // User pressed up. Scroll chat down.
+            p_Event.preventDefault();
+            AdvancedChat.trigger('scroll_down');
+            return;
+        }
     },
 
     OnBlur: function(p_Event)

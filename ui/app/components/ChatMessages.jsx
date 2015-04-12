@@ -37,6 +37,8 @@ var ChatMessages = React.createClass({
         AdvancedChat.on('message:enemy', this.OnChatMessageEnemy);
         AdvancedChat.on('message:team', this.OnChatMessageTeam);
         AdvancedChat.on('message:squad', this.OnChatMessageSquad);
+        AdvancedChat.on('scroll_up', this.OnScrollUp);
+        AdvancedChat.on('scroll_down', this.OnScrollDown);
     },
 
     componentWillUnmount: function()
@@ -45,6 +47,8 @@ var ChatMessages = React.createClass({
         AdvancedChat.off('message:enemy', this.OnChatMessageEnemy);
         AdvancedChat.off('message:team', this.OnChatMessageTeam);
         AdvancedChat.off('message:squad', this.OnChatMessageSquad);
+        AdvancedChat.off('scroll_up', this.OnScrollUp);
+        AdvancedChat.off('scroll_down', this.OnScrollDown);
     },
 
     OnChatMessageAll: function(p_Author, p_Message)
@@ -89,8 +93,23 @@ var ChatMessages = React.createClass({
         });
 
         this.setState(s_NewState);
-    }
+    },
 
+    OnScrollUp: function()
+    {
+        var s_Container = this.refs.messages.getDOMNode();
+
+        var s_NewScroll = s_Container.scrollTop - 20;
+        s_Container.scrollTop = s_NewScroll < 0 ? 0 : s_NewScroll;
+    },
+
+    OnScrollDown: function()
+    {
+        var s_Container = this.refs.messages.getDOMNode();
+
+        var s_NewScroll = s_Container.scrollTop + 20;
+        s_Container.scrollTop = s_NewScroll > s_Container.scrollHeight ? s_Container.scrollHeight : s_NewScroll;
+    }
 });
 
 module.exports = ChatMessages;
