@@ -3,6 +3,7 @@
 
 body, html {
   background-color: transparent;
+  //background: #000 url('/assets/img/bg4.png') no-repeat;
   margin: 0;
   padding: 0;
   width: 100%;
@@ -21,12 +22,11 @@ body, html {
 
 * {
   -webkit-font-smoothing: antialiased;
-  opacity: 0.99999;
 }
 
 #toggle-message {
   position: absolute;
-  top: 198px;
+  top: 212px;
   left: 60px;
   text-transform: uppercase;
   font-size: 13px;
@@ -42,19 +42,34 @@ body, html {
   }
 }
 
+
 #chat-main-container {
   position: absolute;
-  top: 40px;
+  top: 24px;
   left: 60px;
-  background-color: rgba(0, 46, 88, 0.74);
-  -webkit-box-shadow: 0 0 7px 7px rgba(17, 40, 63, 0.94),inset 0 0 94px -17px rgba(59, 99, 134, 0.54);
+  // background-image: -webkit-linear-gradient(90deg, transparent, rgba(11, 148, 255, 0.2) 10%, rgba(11, 148, 255, 0.2) 90%, transparent 100%);
+  // ^ This has a really good result in Chrome 41, but has a gray-ish look in WebUI.
+  background-image: -webkit-linear-gradient(90deg, transparent, rgba(0, 173, 255, 0.36) 10%, rgba(0, 173, 255, 0.36) 90%, transparent 100%);
+  box-shadow: inset 0 0 24px 13px rgba(110, 191, 255, 0.04), 0 0 24px 13px rgba(110, 191, 255, 0.04), ;
   border-radius: 2px;
   width: 400px;
-  height: 150px;
+  height: 190px;
   //transform: skewX(1deg) rotate(1deg);
-  padding: 10px 15px;
+  padding: 30px 15px;
   box-sizing: border-box;
   transition: opacity 200ms ease;
+
+  #chat-second-bg {
+    position: absolute;
+    top: 13px;
+    left: 0;
+    right: 0;
+    bottom: 9px;
+    width: 400px;
+    height: 164px;
+    background: transparent;
+    box-shadow: inset 0 0 20px 5px rgba(0, 37, 60, 0.17), 0 0 20px 5px rgba(0, 37, 60, 0.17);
+  }
 
   &.hidden {
     opacity: 0;
@@ -147,7 +162,7 @@ body, html {
   #chat-form {
     width: 380px;
     position: absolute;
-    bottom: 7px;
+    bottom: 24px;
     left: 10px;
     right: 10px;
     color: #fff;
@@ -155,7 +170,7 @@ body, html {
     .message-input {
       width: 100%;
       box-sizing: border-box;
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(3, 10, 15, 0.2);
       border: none;
       color: #fff;
       line-height: 20px;

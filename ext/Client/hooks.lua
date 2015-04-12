@@ -1,4 +1,8 @@
 function OnCreateChatMessage(p_Hook, p_Message, p_Channel, p_Player, p_RecipientMask, p_SenderIsDead)
+	-- A new chat message is being created; filter it in order to
+	-- prevent the game from rendering it, and pass it to our custom
+	-- WebUI package.
+
 	print(string.format('Got a chat message from player %d (%d, %d)', p_Player, p_Channel, p_RecipientMask))
 	WebUI:ExecuteJS(string.format('AdvancedChat.trigger("message:all", "NoFaTe", %s);', WebUI:QuoteString(p_Message)))
 
@@ -6,6 +10,9 @@ function OnCreateChatMessage(p_Hook, p_Message, p_Channel, p_Player, p_Recipient
 end
 
 function OnInputConceptEvent(p_Hook, p_EventType, p_Action)
+	-- If this is a chat-related input concept eventm then filter it
+	-- to prevent the game from showing the default chat dialog.
+
 	if p_Action == UIInputAction.SayAllChat and p_EventType == UIInputActionEventType.Pressed then
 		WebUI:ExecuteJS('AdvancedChat.trigger("enable_typing", "all")')
 		return
@@ -26,6 +33,7 @@ function OnInputConceptEvent(p_Hook, p_EventType, p_Action)
 		return
 	end
 
+	-- Otherwise, let the game handle it as it normally does.
 	p_Hook:CallOriginal(p_EventType, p_Action)
 end
 
