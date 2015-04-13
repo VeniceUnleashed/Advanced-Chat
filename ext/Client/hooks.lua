@@ -1,51 +1,7 @@
 function OnCreateChatMessage(p_Hook, p_Message, p_Channel, p_Player, p_RecipientMask, p_SenderIsDead)
 	-- A new chat message is being created; filter it in order to
-	-- prevent the game from rendering it, and pass it to our custom
-	-- WebUI package.
-
-	if p_Channel == ChatChannelType.Admin then
-		-- This is a workaround because many RCON tools prepend
-		-- "Admin: " to admin messages.
-		local s_Message = p_Message:gsub("^Admin: ", '')
-		
-		WebUI:ExecuteJS(string.format('AdvancedChat.trigger("message:all", "Admin", %s);', WebUI:QuoteString(s_Message)))
-		return UITextMessageType.Last
-	end
-
-	-- Get the player sending the message, and our local player.
-	local s_OtherPlayer = PlayerManager:GetPlayerByID(p_Player)
-	local s_LocalPlayer = PlayerManager:GetLocalPlayer()
-
-	-- Players not found; cancel.
-	if s_OtherPlayer == nil or s_LocalPlayer == nil then
-		return UITextMessageType.Last
-	end
-
-	-- Player is on a different team; display enemy message.
-	if s_OtherPlayer.teamID ~= s_LocalPlayer.teamID then
-		WebUI:ExecuteJS(string.format('AdvancedChat.trigger("message:enemy", %s, %s);', WebUI:QuoteString(s_OtherPlayer.name), WebUI:QuoteString(p_Message)))
-		return UITextMessageType.Last
-	end
-
-	-- Player is in the same team.
-	-- Display global message.
-	if p_Channel == ChatChannelType.SayAll then
-		WebUI:ExecuteJS(string.format('AdvancedChat.trigger("message:all", %s, %s);', WebUI:QuoteString(s_OtherPlayer.name), WebUI:QuoteString(p_Message)))
-		return UITextMessageType.Last
-	end
-
-	-- Display team message.
-	if p_Channel == ChatChannelType.Team then
-		WebUI:ExecuteJS(string.format('AdvancedChat.trigger("message:team", %s, %s);', WebUI:QuoteString(s_OtherPlayer.name), WebUI:QuoteString(p_Message)))
-		return UITextMessageType.Last
-	end
-
-	-- Display squad message.
-	if p_Channel == ChatChannelType.Squad or p_Channel == ChatChannelType.SquadLeader then
-		WebUI:ExecuteJS(string.format('AdvancedChat.trigger("message:squad", %s, %s);', WebUI:QuoteString(s_OtherPlayer.name), WebUI:QuoteString(p_Message)))
-		return UITextMessageType.Last
-	end
-
+	-- prevent the game from rendering it.
+	
 	return UITextMessageType.Last
 end
 
