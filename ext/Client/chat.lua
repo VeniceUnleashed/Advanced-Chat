@@ -13,6 +13,10 @@ function OnSendChatMessage(p_Contents)
 	local s_Target = p_Contents:match("^([a-z]+):.*$")
 	local s_Message = p_Contents:match("^[a-z]+:(.*)$")
 
+	-- Trim the message.
+	local s_From = s_Message:match"^%s*()"
+ 	s_Message = s_From > #s_Message and "" or s_Message:match(".*%S", s_From)
+
 	-- Ignore if the message is empty.
 	if s_Message:len() == 0 then
 		return true
