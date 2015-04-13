@@ -42,7 +42,6 @@ body, html {
   }
 }
 
-
 #chat-main-container {
   position: absolute;
   top: 24px;
@@ -140,8 +139,8 @@ body, html {
 
       &.team {
         .author {
-          color: #D8FF80;
-          text-shadow: 0 0 6px #245C00;
+          color: #74edff;
+          text-shadow: 0 0 6px #0055AA;
         }
       }
 
@@ -154,8 +153,8 @@ body, html {
 
       &.squad {
         .author {
-          color: #74edff;
-          text-shadow: 0 0 6px #0055AA;
+          color: #D8FF80;
+          text-shadow: 0 0 6px #245C00;
         }
       }
     }
