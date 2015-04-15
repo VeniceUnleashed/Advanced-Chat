@@ -1,4 +1,4 @@
-function OnEngineMessage(p_Message)
+local function OnEngineMessage(p_Message)
 	-- We only care about UIHudChatMessages.
 	if p_Message.category ~= MessageCategory.UI or p_Message.type ~= MessageType.UIHudChatMessage then
 		return true
