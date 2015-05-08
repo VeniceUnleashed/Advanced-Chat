@@ -26,21 +26,27 @@ function OnEngineMessage(p_Message)
 		return true
 	end
 
+	-- Player is a spectator.
+	if s_OtherPlayer.teamID == 0 then
+		WebUI:ExecuteJS(string.format('AdvancedChat.trigger("message:spectator", %s, %s);', WebUI:QuoteString(s_OtherPlayer.name), WebUI:QuoteString(s_Message.string)))
+		return true
+	end
+
 	-- Player is on a different team; display enemy message.
-	if s_OtherPlayer.teamID ~= s_LocalPlayer.teamID then
+	if (s_LocalPlayer.teamID == 0 and s_OtherPlayer.teamID == 2) or (s_LocalPlayer.teamID ~= 0 and s_OtherPlayer.teamID ~= s_LocalPlayer.teamID) then
 		WebUI:ExecuteJS(string.format('AdvancedChat.trigger("message:enemy", %s, %s);', WebUI:QuoteString(s_OtherPlayer.name), WebUI:QuoteString(s_Message.string)))
 		return true
 	end
 
 	-- Player is in the same team.
 	-- Display global message.
-	if s_Message.channel == ChatChannelType.SayAll then
+	if s_Message.channel == ChatChannelType.SayAll and s_LocalPlayer.teamID ~= 0 then
 		WebUI:ExecuteJS(string.format('AdvancedChat.trigger("message:all", %s, %s);', WebUI:QuoteString(s_OtherPlayer.name), WebUI:QuoteString(s_Message.string)))
 		return true
 	end
 
 	-- Display team message.
-	if s_Message.channel == ChatChannelType.Team then
+	if s_Message.channel == ChatChannelType.Team or s_LocalPlayer.teamID == 0 then
 		WebUI:ExecuteJS(string.format('AdvancedChat.trigger("message:team", %s, %s);', WebUI:QuoteString(s_OtherPlayer.name), WebUI:QuoteString(s_Message.string)))
 		return true
 	end

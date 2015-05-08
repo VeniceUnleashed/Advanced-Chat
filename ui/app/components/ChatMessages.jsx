@@ -37,6 +37,7 @@ var ChatMessages = React.createClass({
         AdvancedChat.on('message:enemy', this.OnChatMessageEnemy);
         AdvancedChat.on('message:team', this.OnChatMessageTeam);
         AdvancedChat.on('message:squad', this.OnChatMessageSquad);
+        AdvancedChat.on('message:spectator', this.OnChatMessageSpectator);
         AdvancedChat.on('scroll_up', this.OnScrollUp);
         AdvancedChat.on('scroll_down', this.OnScrollDown);
     },
@@ -47,6 +48,7 @@ var ChatMessages = React.createClass({
         AdvancedChat.off('message:enemy', this.OnChatMessageEnemy);
         AdvancedChat.off('message:team', this.OnChatMessageTeam);
         AdvancedChat.off('message:squad', this.OnChatMessageSquad);
+        AdvancedChat.off('message:spectator', this.OnChatMessageSpectator);
         AdvancedChat.off('scroll_up', this.OnScrollUp);
         AdvancedChat.off('scroll_down', this.OnScrollDown);
     },
@@ -89,6 +91,17 @@ var ChatMessages = React.createClass({
         var s_NewState = React.addons.update(this.state, {
             messages: {
                 $push: [ <ChatMessage author={p_Author} content={p_Message} target="squad" /> ]
+            }
+        });
+
+        this.setState(s_NewState);
+    },
+
+    OnChatMessageSpectator: function(p_Author, p_Message)
+    {
+        var s_NewState = React.addons.update(this.state, {
+            messages: {
+                $push: [ <ChatMessage author={p_Author} content={p_Message} target="spectator" /> ]
             }
         });
 

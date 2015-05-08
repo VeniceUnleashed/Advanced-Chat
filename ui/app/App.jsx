@@ -53,6 +53,7 @@ var App = React.createClass({
         AdvancedChat.on('message:enemy', this.OnChatMessage);
         AdvancedChat.on('message:team', this.OnChatMessage);
         AdvancedChat.on('message:squad', this.OnChatMessage);
+        AdvancedChat.on('message:spectator', this.OnChatMessage);
         AdvancedChat.on('toggle_mode', this.OnToggleMode);
         AdvancedChat.on('enable_typing', this.OnEnableTyping);
         AdvancedChat.on('disable_typing', this.OnDisableTyping);
@@ -64,6 +65,7 @@ var App = React.createClass({
         AdvancedChat.off('message:enemy', this.OnChatMessage);
         AdvancedChat.off('message:team', this.OnChatMessage);
         AdvancedChat.off('message:squad', this.OnChatMessage);
+        AdvancedChat.off('message:spectator', this.OnChatMessage);
         AdvancedChat.off('toggle_mode', this.OnToggleMode);
         AdvancedChat.off('enable_typing', this.OnEnableTyping);
         AdvancedChat.off('disable_typing', this.OnDisableTyping);
@@ -83,6 +85,9 @@ var App = React.createClass({
 
     OnChatMessage: function()
     {
+        if (this.state.typing_enabled)
+            return;
+
         switch (this.state.display_mode)
         {
             // Popout
