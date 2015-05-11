@@ -1,4 +1,4 @@
-function OnLoaded()
+local function OnLoaded()
 	-- Initialize our custom WebUI package.
 	WebUI:Init()
 
@@ -8,7 +8,7 @@ function OnLoaded()
 	return true
 end
 
-function OnSendChatMessage(p_Contents)
+local function OnSendChatMessage(p_Contents)
 	-- Get the target of the message and the message itself.
 	local s_Target = p_Contents:match("^([a-z]+):.*$")
 	local s_Message = p_Contents:match("^[a-z]+:(.*)$")
