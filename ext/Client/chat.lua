@@ -50,4 +50,4 @@ function OnSendChatMessage(p_Contents)
 end
 
 Events:Subscribe('ExtensionLoaded', OnLoaded)
-Events:Subscribe('SendChatMessage', OnSendChatMessage)
+Events:Subscribe('AC:SendChatMessage', OnSendChatMessage)

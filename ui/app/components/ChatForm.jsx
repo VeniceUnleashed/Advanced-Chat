@@ -19,7 +19,7 @@ var ChatForm = React.createClass({
 
         return (
             <form id="chat-form" className={s_ClassName} onSubmit={this.OnSubmit}>
-                <input type="text" ref="message" className="message-input" disabled={!this.state.active} onKeyDown={this.OnKeyDown} onBlur={this.OnBlur} />
+                <input type="text" ref="message" className="message-input" maxlength="254" disabled={!this.state.active} onKeyDown={this.OnKeyDown} onBlur={this.OnBlur} />
                 <label ref="target" className="chat-target">{this.state.target}</label>
             </form>
         );
@@ -61,7 +61,7 @@ var ChatForm = React.createClass({
     {
         p_Event.preventDefault();
 
-        VU.Call('DispatchEventLocal', 'SendChatMessage', this.state.target + ':' + this.refs.message.getDOMNode().value);
+        VU.Call('DispatchEventLocal', 'AC:SendChatMessage', this.state.target + ':' + this.refs.message.getDOMNode().value);
         AdvancedChat.trigger('disable_typing');
     },
 

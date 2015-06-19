@@ -173,7 +173,7 @@ var App = React.createClass({
 
         // Disable mouse and keyboard input.
         VU.Call('DisableKeyboard');
-        VU.Call('DisableMouse');
+        VU.Call('DispatchEventLocal', 'AC:DisableMouse');
     },
 
     ShowChatbox: function(p_Timeout)
