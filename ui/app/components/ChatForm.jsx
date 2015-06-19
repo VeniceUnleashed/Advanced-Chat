@@ -19,7 +19,7 @@ var ChatForm = React.createClass({
 
         return (
             <form id="chat-form" className={s_ClassName} onSubmit={this.OnSubmit}>
-                <input type="text" ref="message" className="message-input" maxlength="254" disabled={!this.state.active} onKeyDown={this.OnKeyDown} onBlur={this.OnBlur} />
+                <input type="text" ref="message" className="message-input" maxLength="127" disabled={!this.state.active} onKeyDown={this.OnKeyDown} onBlur={this.OnBlur} />
                 <label ref="target" className="chat-target">{this.state.target}</label>
             </form>
         );
