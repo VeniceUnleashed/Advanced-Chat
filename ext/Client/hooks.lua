@@ -15,7 +15,7 @@ end
 function AdvancedChatHooks:OnCreateChatMessage(p_Hook, p_Message, p_Channel, p_Player, p_RecipientMask, p_SenderIsDead)
 	-- A new chat message is being created; filter it in order to
 	-- prevent the game from rendering it.
-	
+
 	return UITextMessageType.Last
 end
 
@@ -67,4 +67,4 @@ function AdvancedChatHooks:OnDisableMouse()
 	WebUI:DisableMouse()
 end
 
-local hooks = AdvancedChatHooks()
+return AdvancedChatHooks
