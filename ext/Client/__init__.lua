@@ -50,12 +50,12 @@ function AdvancedChat:OnSendChatMessage(p_Contents)
 	end
 
 	if s_Target == 'team' then
-		ChatManager:SendMessage(s_Message, s_LocalPlayer.teamID)
+		ChatManager:SendMessage(s_Message, s_LocalPlayer.teamId)
 		return
 	end
 
 	if s_Target == 'sqd' then
-		ChatManager:SendMessage(s_Message, s_LocalPlayer.teamID, s_LocalPlayer.squadID)
+		ChatManager:SendMessage(s_Message, s_LocalPlayer.teamId, s_LocalPlayer.squadId)
 		return
 	end
 

@@ -1,0 +1,9 @@
+{
+	"Name": "Advanced Chat",
+	"Authors": [ "Venice Unleashed" ],
+	"Description": "Advanced Chat replacement for Battlefield 3",
+	"URL": "http://veniceunleashed.net",
+	"Version": "3",
+	"HasWebUI": true,
+	"HasVeniceEXT": true
+}
