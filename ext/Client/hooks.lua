@@ -1,5 +1,7 @@
 class 'AdvancedChatHooks'
 
+local m_StoreManager = require "StoreManager"
+
 function AdvancedChatHooks:__init()
 	self.m_CursorMode = false
 
@@ -12,27 +14,35 @@ function AdvancedChatHooks:__init()
 end
 
 function AdvancedChatHooks:OnInputConceptEvent(p_Hook, p_EventType, p_Action)
-	-- If this is a chat-related input concept eventm then filter it
+	-- If this is a chat-related input concept event then filter it
 	-- to prevent the game from showing the default chat dialog.
 	print("OnInputConceptEvent")
 
-	if p_Action == UIInputAction.SayAllChat and p_EventType == UIInputActionEventType.Pressed then
-		WebUI:ExecuteJS('AdvancedChat.trigger("enable_typing", "all")')
+	if p_Action == UIInputAction.UIInputAction_SayAllChat and p_EventType == UIInputActionEventType.UIInputActionEventType_Pressed then
+		--WebUI:ExecuteJS('AdvancedChat.trigger("enable_typing", "all")')
+		m_StoreManager:Commit("EnableTyping", "all")
+		p_Hook:Pass(UIInputAction.UIInputAction_None, p_EventType)
 		return
 	end
 
-	if p_Action == UIInputAction.TeamChat and p_EventType == UIInputActionEventType.Pressed then
-		WebUI:ExecuteJS('AdvancedChat.trigger("enable_typing", "team")')
+	if p_Action == UIInputAction.UIInputAction_TeamChat and p_EventType == UIInputActionEventType.UIInputActionEventType_Pressed then
+		--WebUI:ExecuteJS('AdvancedChat.trigger("enable_typing", "team")')
+		m_StoreManager:Commit("EnableTyping", "team")
+		p_Hook:Pass(UIInputAction.UIInputAction_None, p_EventType)
 		return
 	end
 
-	if p_Action == UIInputAction.SquadChat and p_EventType == UIInputActionEventType.Pressed then
-		WebUI:ExecuteJS('AdvancedChat.trigger("enable_typing", "sqd")')
+	if p_Action == UIInputAction.UIInputAction_SquadChat and p_EventType == UIInputActionEventType.UIInputActionEventType_Pressed then
+		--WebUI:ExecuteJS('AdvancedChat.trigger("enable_typing", "sqd")')
+		m_StoreManager:Commit("EnableTyping", "sqd")
+		p_Hook:Pass(UIInputAction.UIInputAction_None, p_EventType)
 		return
 	end
 
-	if p_Action == UIInputAction.ToggleChat and p_EventType == UIInputActionEventType.Pressed then
-		WebUI:ExecuteJS('AdvancedChat.trigger("toggle_mode")')
+	if p_Action == UIInputAction.UIInputAction_ToggleChat and p_EventType == UIInputActionEventType.UIInputActionEventType_Pressed then
+		--WebUI:ExecuteJS('AdvancedChat.trigger("toggle_mode")')
+		m_StoreManager:Dispatch("ToggleDisplayMode")
+		p_Hook:Pass(UIInputAction.UIInputAction_None, p_EventType)
 		return
 	end
 
