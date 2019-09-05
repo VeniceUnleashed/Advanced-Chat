@@ -6,7 +6,7 @@
       <chat-form></chat-form>
     </div>
 
-    <div id="toggle-message" v-show="IsVisible">Display Mode: {{ DisplayModeText }}</div>
+    <div id="toggle-message" v-show="IsDisplayModeShown">Display Mode: {{ DisplayModeText }}</div>
   </div>
 </template>
 
@@ -17,13 +17,15 @@
     computed: {
       ...mapGetters([
         'IsVisible',
+        'IsDisplayModeShown',
         'GetDisplayMode'
       ]),
+
       DisplayModeText () {
         let displayText = "PopUp";
         switch (this.GetDisplayMode) {
           case 1:
-            displayText = "Active";
+            displayText = "Always shown";
             break;
           case 2:
             displayText = "Hidden";
@@ -34,9 +36,15 @@
       }
     },
 
-    methods: {
-      ShowChatBox(){
+    watch: {
+      IsVisible: function (val) {
+        // when the IsVisible prop changes, this function will be fired.
 
+      }
+    },
+    methods: {
+      ShowChatBox(msg){
+        console.log(msg)
       },
       HideChatBox(){
 

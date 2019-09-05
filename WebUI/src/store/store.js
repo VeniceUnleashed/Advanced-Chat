@@ -20,11 +20,17 @@ export default new Vuex.Store({
     IsTypingActive(store){
       return store.typingActive;
     },
+    IsDisplayModeShown(store){
+      return store.showDisplayMode;
+    },
     GetTarget(store){
       return store.target;
     },
     GetDisplayMode(store){
       return store.displayMode;
+    },
+    GetMessages(store) {
+      return store.messages;
     }
   },
 
@@ -36,8 +42,14 @@ export default new Vuex.Store({
     DisableTyping (state) {
       state.typingActive = false;
     },
-    SetMode(state, displayMod){
-      state.displayMode = displayMod;
+    SetDisplayMode(state, displayMode) {
+      state.displayMode = displayMode;
+    },
+    SetShowDisplayMode(state, showDisplayMode) {
+      state.showDisplayMode = showDisplayMode;
+    },
+    AddMessage(state, message) {
+      state.messages.push(message)
     }
   },
 
@@ -51,7 +63,16 @@ export default new Vuex.Store({
         newMode = 0;
       }
 
-      commit('SetMode', newMode);
+      commit('SetDisplayMode', newMode);
+      commit('SetShowDisplayMode', true);
+
+      state.showDisplayMode = true;
+      setTimeout(() => {
+        commit('SetShowDisplayMode', false);
+      }, 2500)
+    },
+    OnMessage({ commit }, message){
+      commit('AddMessage', message)
     }
   }
 });

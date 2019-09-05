@@ -1,12 +1,16 @@
 <template>
-  <div class="chat-message">
+  <div class="chat-message" :class="message.target">
 
+    <label class="author">{{ message.author}}:</label>
+    <span class="content">{{ message.content}}</span>
   </div>
 </template>
 
 <script>
     export default {
-
+      props: {
+        message: null
+      }
     }
 </script>
 

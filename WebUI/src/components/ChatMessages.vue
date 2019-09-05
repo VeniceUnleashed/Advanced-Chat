@@ -1,11 +1,22 @@
 <template>
-  <div id="chat-messages">
+  <div id="chat-messages" ref="messages">
+
+    <chat-message
+      v-for="(message, index) in GetMessages"
+      v-bind:message="message"
+      v-bind:key="index">
+    </chat-message>
   </div>
 </template>
 
 <script>
-    export default {
-        name: "ChatMessages"
+  import { mapGetters } from 'vuex';
+
+  export default {
+      name: "ChatMessages",
+      computed: {
+        ...mapGetters(['GetMessages'])
+      }
     }
 </script>
 
