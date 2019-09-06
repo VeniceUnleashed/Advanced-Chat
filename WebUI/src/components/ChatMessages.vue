@@ -24,8 +24,6 @@
 
         // check if we need to scroll to the bottom after updating messages
         if (container.scrollHeight - container.scrollTop === container.clientHeight) {
-          // console.log("Scroll all the way to the bottom");
-
           // TODO: change this so its done after 'messages' has been changed instead of using a timer
           setTimeout( () => {container.scrollTop = container.scrollHeight}, 50);
         }

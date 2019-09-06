@@ -1,16 +1,16 @@
 <template>
-    <div id="chat-form"
+    <div id="chat-form" ref="inputContainer"
          :class="IsTypingActive ? 'active' : 'inactive'"
          v-on:input="inputMessage = $event.target.value">
 
-		  <input type="text" v-model="inputMessage" class="message-input" maxLength="127" v-if="IsTypingActive" v-on:keyup="OnKeyPressed" />
-		  <!-- onBlur={this.OnBlur}-->
+		  <input ref="messageInput" autofocus type="text" class="message-input" maxLength="127" id="fuckit"
+                 v-model="inputMessage" v-if="IsTypingActive" v-on:keyup="OnKeyPressed" v-on:blur="OnBlur"/>
 		  <label ref="target" class="chat-target">{{ GetTarget }}</label>
     </div>
 </template>
 
 <script>
-  import { mapGetters, mapActions } from 'vuex';
+    import { mapGetters, mapActions } from 'vuex';
 
   export default {
     data: () => ({
@@ -22,17 +22,17 @@
     },
     methods:{
       OnSubmit(event) {
+        if (this.inputMessage.length === 0) {
+            this.$store.dispatch('DisableTyping');
+            return;
+        }
 
         event.preventDefault();
 
         this.$vext.DispatchEventLocal('AC:SendChatMessage', this.GetTarget + ':' + this.inputMessage);
 
-        /** Why doesn't this.DisableTyping() work???? creates infinite loop of errors**/
-        // this.$store.dispatch('DisableTyping');
-
         this.ResetInputMessage();
       },
-
       ResetInputMessage() {
         this.inputMessage = '';
       },
@@ -46,8 +46,6 @@
             break;
           case 'Escape':
             console.log("escape key was pressed!");
-
-            /** Why doesn't this.DisableTyping() work???? creates infinite loop of errors**/
             this.$store.dispatch('DisableTyping');
             break;
           case 'ArrowUp':
@@ -59,8 +57,16 @@
             console.log("down key was pressed!");
             break;
         }
+      },
+        OnBlur(){
+            this.$store.dispatch('DisableTyping');
+        }
+    },
+      watch: {
+          IsTypingActive: function (oldValue, newValue) {
+              // this.$nextTick(() => this.$refs.inputContainer.focus());
+          }
       }
-    }
   }
 </script>
 

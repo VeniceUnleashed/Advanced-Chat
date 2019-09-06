@@ -60,7 +60,10 @@
     &.squadLeader {
       .author {
         color: #D8FF80;
-        text-shadow: 0 0 6px #005b5c;
+        text-shadow: 0 0 6px #245C00;
+      }
+      .author:before {
+        content: "★ "
       }
     }
 
@@ -73,7 +76,7 @@
 
     &.admin {
       .author {
-        color: #ff0023;
+        color: #e1001e;
         text-shadow: 0 0 6px #5c0010;
       }
     }

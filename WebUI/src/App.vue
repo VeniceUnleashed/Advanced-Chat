@@ -34,26 +34,14 @@
 
         return displayText;
       }
-    },
-
-    watch: {
-      IsVisible: function (val) {
-        // when the IsVisible prop changes, this function will be fired.
-
-      }
-    },
-    methods: {
-      ShowChatBox(msg){
-        console.log(msg)
-      },
-      HideChatBox(){
-
-      }
     }
   }
 </script>
 
 <style lang="scss">
+  /*@import "compass";*/
+  /*@import "compass/reset";*/
+
   #app {
     // background-color: transparent;
     /*background: #000 url('assets/img/bf3bg-spawnscreen.png') no-repeat;*/

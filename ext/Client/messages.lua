@@ -28,7 +28,7 @@ function AdvancedChatMessages:OnCreateChatMessage(p_Hook, p_Message, p_Channel, 
 
 		s_Table = {author = "Admin", content = s_String, target = "admin"}
 		print('OnMessage, '.. json.encode(s_Table))
-		m_StoreManager:Commit("AddMessage", s_Table)
+		m_StoreManager:Dispatch("OnMessage", s_Table)
 
 		goto continue
 	end
@@ -68,7 +68,7 @@ function AdvancedChatMessages:OnCreateChatMessage(p_Hook, p_Message, p_Channel, 
 
 	s_Table = {author = s_OtherPlayer.name, content = p_Message, target = s_Target}
 	print('OnMessage, '.. json.encode(s_Table))
-	m_StoreManager:Commit("AddMessage", s_Table)
+	m_StoreManager:Dispatch("OnMessage", s_Table)
 
 	::continue::
 
