@@ -13,11 +13,25 @@
   import { mapGetters } from 'vuex';
 
   export default {
-      name: "ChatMessages",
-      computed: {
-        ...mapGetters(['GetMessages'])
+    name: "ChatMessages",
+    computed: {
+      ...mapGetters(['GetMessages'])
+    },
+    watch: {
+      GetMessages: function () {
+        // before the messages array changes, this function will be fired.
+        let container = this.$refs.messages;
+
+        // check if we need to scroll to the bottom after updating messages
+        if (container.scrollHeight - container.scrollTop === container.clientHeight) {
+          // console.log("Scroll all the way to the bottom");
+
+          // TODO: change this so its done after 'messages' has been changed instead of using a timer
+          setTimeout( () => {container.scrollTop = container.scrollHeight}, 50);
+        }
       }
     }
+  }
 </script>
 
 <style lang="scss" scoped>

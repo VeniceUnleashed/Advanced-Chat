@@ -24,7 +24,6 @@ global.debug = window.location.href.indexOf('webui') === -1;
 if (debug) {
   console.log("Running UI on debug mode");
   setTimeout( () => {
-    StoreCommit('AddMessage', );
     StoreCommit('AddMessage',{author: "FoolHen", content: "sup", target: "all"});
     StoreCommit('AddMessage',{author: "Powback", content: "heyy", target: "team"});
     StoreCommit('AddMessage',{author: "Paul", content: "testing", target: "squad"});
@@ -32,8 +31,7 @@ if (debug) {
     StoreCommit('AddMessage',{author: "BadGuy", content: "hi", target: "enemy"});
     StoreCommit('AddMessage',{author: "BadderGuy", content: "nice", target: "enemy"});
     StoreCommit('AddMessage',{author: "BadestGuy", content: "lol", target: "enemy"});
-  }, 1000)
-
+  }, 1000);
 }
 
 Vue.component("chat-form", ChatForm);

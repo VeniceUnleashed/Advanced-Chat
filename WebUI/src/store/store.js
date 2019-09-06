@@ -72,7 +72,7 @@ export default new Vuex.Store({
       }, 2500)
     },
     OnMessage({ commit }, message){
-      commit('AddMessage', message)
+      // commit('AddMessage', message)
     }
   }
 });
