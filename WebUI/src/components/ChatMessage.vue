@@ -7,11 +7,11 @@
 </template>
 
 <script>
-    export default {
-      props: {
+export default {
+    props: {
         message: null
-      }
     }
+};
 </script>
 
 <style lang="scss" scoped>

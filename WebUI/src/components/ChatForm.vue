@@ -1,73 +1,76 @@
 <template>
-    <div id="chat-form" ref="inputContainer"
-         :class="IsTypingActive ? 'active' : 'inactive'"
-         v-on:input="inputMessage = $event.target.value">
+    <div id="chat-form" v-show="IsTypingActive">
 
-		  <input ref="messageInput" autofocus type="text" class="message-input" maxLength="127" id="fuckit"
-                 v-model="inputMessage" v-if="IsTypingActive" v-on:keyup="OnKeyPressed" v-on:blur="OnBlur"/>
+		  <input ref="messageInput" type="text" class="message-input" maxLength="127"
+                 v-model="inputMessage" v-on:keyup="OnKeyPressed" v-on:blur="OnBlur"/>
 		  <label ref="target" class="chat-target">{{ GetTarget }}</label>
     </div>
 </template>
 
 <script>
-    import { mapGetters, mapActions } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
-  export default {
+export default {
     data: () => ({
-      inputMessage: ''
+        inputMessage: ''
     }),
     computed: {
-      ...mapGetters(['IsTypingActive', 'GetTarget']),
-      ...mapActions(['EnableTyping', 'DisableTyping'])
+        ...mapGetters(['IsTypingActive', 'GetTarget']),
+        ...mapActions(['EnableTyping', 'DisableTyping'])
     },
-    methods:{
-      OnSubmit(event) {
-        if (this.inputMessage.length === 0) {
-            this.$store.dispatch('DisableTyping');
-            return;
-        }
+    methods: {
+        OnSubmit (event) {
+            if (this.inputMessage.length === 0) {
+                this.$store.dispatch('DisableTyping');
+                return;
+            }
 
-        event.preventDefault();
+            event.preventDefault();
 
-        this.$vext.DispatchEventLocal('AC:SendChatMessage', this.GetTarget + ':' + this.inputMessage);
+            this.$vext.DispatchEventLocal('AC:SendChatMessage', this.GetTarget + ':' + this.inputMessage);
 
-        this.ResetInputMessage();
-      },
-      ResetInputMessage() {
-        this.inputMessage = '';
-      },
+            this.ResetInputMessage();
+        },
+        ResetInputMessage () {
+            this.inputMessage = '';
+        },
 
-      OnKeyPressed(event) {
-        switch (event.key) {
-          case 'Enter':
-            console.log("enter key was pressed!");
+        OnKeyPressed (event) {
+            switch (event.key) {
+            case 'Enter':
+                console.log('enter key was pressed!');
 
-            this.OnSubmit(event);
-            break;
-          case 'Escape':
-            console.log("escape key was pressed!");
-            this.$store.dispatch('DisableTyping');
-            break;
-          case 'ArrowUp':
-            //TODO
-            console.log("up key was pressed!");
-            break;
-          case 'ArrowDown':
-            //TODO
-            console.log("down key was pressed!");
-            break;
-        }
-      },
-        OnBlur(){
+                this.OnSubmit(event);
+                break;
+            case 'Escape':
+                console.log('escape key was pressed!');
+                this.$store.dispatch('DisableTyping');
+                break;
+            case 'ArrowUp':
+            // TODO
+                console.log('up key was pressed!');
+                this.$emit('scroll-up');
+                break;
+            case 'ArrowDown':
+            // TODO
+                console.log('down key was pressed!');
+                this.$emit('scroll-down');
+                break;
+            }
+        },
+
+        OnBlur () {
             this.$store.dispatch('DisableTyping');
         }
     },
-      watch: {
-          IsTypingActive: function (oldValue, newValue) {
-              // this.$nextTick(() => this.$refs.inputContainer.focus());
-          }
-      }
-  }
+    watch: {
+        IsTypingActive (shouldFocus) {
+            if (shouldFocus) {
+              this.$nextTick(() => this.$refs.messageInput.focus());
+            }
+        }
+    }
+};
 </script>
 
 <style lang="scss" scoped>

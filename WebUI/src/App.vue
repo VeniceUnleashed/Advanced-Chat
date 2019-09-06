@@ -2,8 +2,8 @@
   <div id="app">
 
     <div id="chat-container" v-show="IsVisible">
-      <chat-messages></chat-messages>
-      <chat-form></chat-form>
+      <chat-messages ref="chatMessages"></chat-messages>
+      <chat-form v-on:scroll-up="OnScrollUp" v-on:scroll-down="OnScrollDown"></chat-form>
     </div>
 
     <div id="toggle-message" v-show="IsDisplayModeShown">Display Mode: {{ DisplayModeText }}</div>
@@ -11,31 +11,40 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
 
-  export default {
+export default {
     computed: {
-      ...mapGetters([
-        'IsVisible',
-        'IsDisplayModeShown',
-        'GetDisplayMode'
-      ]),
+        ...mapGetters([
+            'IsVisible',
+            'IsDisplayModeShown',
+            'GetDisplayMode'
+        ]),
 
-      DisplayModeText () {
-        let displayText = "PopUp";
-        switch (this.GetDisplayMode) {
-          case 1:
-            displayText = "Always shown";
-            break;
-          case 2:
-            displayText = "Hidden";
-            break;
+        DisplayModeText () {
+            let displayText = 'PopUp';
+            switch (this.GetDisplayMode) {
+            case 1:
+                displayText = 'Always shown';
+                break;
+            case 2:
+                displayText = 'Hidden';
+                break;
+            }
+
+            return displayText;
         }
+    },
 
-        return displayText;
-      }
-    }
-  }
+		methods: {
+    		OnScrollUp () {
+    				this.$refs.chatMessages.ScrollUp();
+				},
+				OnScrollDown () {
+					this.$refs.chatMessages.ScrollDown();
+				}
+		}
+};
 </script>
 
 <style lang="scss">
@@ -60,7 +69,6 @@
     -webkit-font-smoothing: antialiased;
     //@include user-select(none);
   }
-
 
   * {
     -webkit-font-smoothing: antialiased;

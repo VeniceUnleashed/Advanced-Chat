@@ -10,26 +10,37 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
 
-  export default {
-    name: "ChatMessages",
+export default {
+    name: 'ChatMessages',
     computed: {
-      ...mapGetters(['GetMessages'])
+        ...mapGetters(['GetMessages'])
     },
     watch: {
-      GetMessages: function () {
-        // before the messages array changes, this function will be fired.
-        let container = this.$refs.messages;
+        GetMessages: function () {
+        		// before the messages array changes, this function will be fired.
+						const container = this.$refs.messages;
 
-        // check if we need to scroll to the bottom after updating messages
-        if (container.scrollHeight - container.scrollTop === container.clientHeight) {
-          // TODO: change this so its done after 'messages' has been changed instead of using a timer
-          setTimeout( () => {container.scrollTop = container.scrollHeight}, 50);
+						// check if we need to scroll to the bottom after updating messages
+						if (container.scrollHeight - container.scrollTop === container.clientHeight) {
+								this.$nextTick(() => { container.scrollTop = container.scrollHeight; });
+						}
         }
-      }
-    }
-  }
+    },
+		methods: {
+			ScrollUp() {
+				const container = this.$refs.messages;
+				const newScroll = container.scrollTop - 20;
+				container.scrollTop = newScroll < 0 ? 0 : newScroll;
+			},
+    	ScrollDown() {
+				const container = this.$refs.messages;
+				const newScroll = container.scrollTop + 20;
+				container.scrollTop = newScroll > container.scrollHeight ? container.scrollHeight : newScroll;
+			}
+		}
+};
 </script>
 
 <style lang="scss" scoped>
