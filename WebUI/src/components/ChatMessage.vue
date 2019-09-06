@@ -57,11 +57,24 @@
         text-shadow: 0 0 6px #245C00;
       }
     }
+    &.squadLeader {
+      .author {
+        color: #D8FF80;
+        text-shadow: 0 0 6px #005b5c;
+      }
+    }
 
     &.spectator {
       .author {
         color: #ffed08;
         text-shadow: 0 0 6px #5c5c06;
+      }
+    }
+
+    &.admin {
+      .author {
+        color: #ff0023;
+        text-shadow: 0 0 6px #5c0010;
       }
     }
   }

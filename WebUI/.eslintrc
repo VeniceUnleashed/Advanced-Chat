@@ -1,0 +1,22 @@
+{
+  "root": true,
+  "env": {
+    "node": true
+  },
+  "extends": [
+    "plugin:vue/essential",
+    "@vue/standard"
+  ],
+  "globals": {
+    "WebUI": "readonly",
+    "StoreCommit": "readonly",
+    "StoreDispatch": "readonly"
+  },
+  "rules": {
+    "semi": ["error", "always"],
+    "indent": ["error", 4]
+  },
+  "parserOptions": {
+    "parser": "babel-eslint"
+  }
+}

@@ -56,7 +56,7 @@
 <style lang="scss">
   #app {
     // background-color: transparent;
-    background: #000 url('assets/img/bf3bg-spawnscreen.png') no-repeat;
+    /*background: #000 url('assets/img/bf3bg-spawnscreen.png') no-repeat;*/
     margin: 0;
     padding: 0;
     width: 100%;

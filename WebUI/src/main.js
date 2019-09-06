@@ -34,6 +34,15 @@ if (debug) {
   }, 1000);
 }
 
+if (process.env.NODE_ENV === 'development') {
+
+  // Lazyload vue-devtools if we are in development in VU
+  import('@vue/devtools').then(devtools => {
+    devtools.connect();
+  });
+}
+
+
 Vue.component("chat-form", ChatForm);
 Vue.component("chat-message", ChatMessage);
 Vue.component("chat-messages", ChatMessages);

@@ -35,13 +35,7 @@ export default new Vuex.Store({
   },
 
   mutations: {
-    EnableTyping (state, target) {
-      state.typingActive = true;
-      state.target = target;
-    },
-    DisableTyping (state) {
-      state.typingActive = false;
-    },
+
     SetDisplayMode(state, displayMode) {
       state.displayMode = displayMode;
     },
@@ -50,6 +44,12 @@ export default new Vuex.Store({
     },
     AddMessage(state, message) {
       state.messages.push(message)
+    },
+    SetTypingActive(store, isActive){
+      store.typingActive = isActive;
+    },
+    SetTarget(store, target) {
+      store.target = target;
     }
   },
 
@@ -73,6 +73,41 @@ export default new Vuex.Store({
     },
     OnMessage({ commit }, message){
       // commit('AddMessage', message)
+    },
+    EnableTyping ({ commit }, target) {
+      commit('SetTypingActive', true);
+      commit('SetTarget', target);
+
+
+
+      // this.ShowChatBox(-1);
+
+      // Show both brings our UI to the front and shows it.
+      vm.$vext.Call('Show');
+
+      // Enable mouse and keyboard input.
+      vm.$vext.Call('EnableKeyboard');
+      vm.$vext.Call('EnableMouse');
+
+    },
+    DisableTyping ({commit}) {
+      commit('SetTypingActive', false);
+
+      // switch (this.state.display_mode)
+      // {
+      //   case 1:
+      //     this.ShowChatbox(-1);
+      //     break;
+      //
+      //   case 0:
+      //   case 2:
+      //     this.HideChatbox();
+      //     break;
+      // }
+
+      // Disable mouse and keyboard input.
+      vm.$vext.Call('DisableKeyboard');
+      vm.$vext.DispatchEventLocal('AC:DisableMouse');
     }
   }
 });

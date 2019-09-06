@@ -3,7 +3,7 @@
 	"Authors": [ "Venice Unleashed" ],
 	"Description": "Advanced Chat replacement for Battlefield 3",
 	"URL": "http://veniceunleashed.net",
-	"Version": "3",
+	"Version": "4",
 	"HasWebUI": true,
 	"HasVeniceEXT": true
 }

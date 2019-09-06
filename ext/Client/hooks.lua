@@ -20,21 +20,21 @@ function AdvancedChatHooks:OnInputConceptEvent(p_Hook, p_EventType, p_Action)
 
 	if p_Action == UIInputAction.UIInputAction_SayAllChat and p_EventType == UIInputActionEventType.UIInputActionEventType_Pressed then
 		--WebUI:ExecuteJS('AdvancedChat.trigger("enable_typing", "all")')
-		m_StoreManager:Commit("EnableTyping", "all")
+		m_StoreManager:Dispatch("EnableTyping", "all")
 		p_Hook:Pass(UIInputAction.UIInputAction_None, p_EventType)
 		return
 	end
 
 	if p_Action == UIInputAction.UIInputAction_TeamChat and p_EventType == UIInputActionEventType.UIInputActionEventType_Pressed then
 		--WebUI:ExecuteJS('AdvancedChat.trigger("enable_typing", "team")')
-		m_StoreManager:Commit("EnableTyping", "team")
+		m_StoreManager:Dispatch("EnableTyping", "team")
 		p_Hook:Pass(UIInputAction.UIInputAction_None, p_EventType)
 		return
 	end
 
 	if p_Action == UIInputAction.UIInputAction_SquadChat and p_EventType == UIInputActionEventType.UIInputActionEventType_Pressed then
 		--WebUI:ExecuteJS('AdvancedChat.trigger("enable_typing", "sqd")')
-		m_StoreManager:Commit("EnableTyping", "sqd")
+		m_StoreManager:Dispatch("EnableTyping", "squad")
 		p_Hook:Pass(UIInputAction.UIInputAction_None, p_EventType)
 		return
 	end
