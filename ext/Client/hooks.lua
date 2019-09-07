@@ -11,6 +11,7 @@ function AdvancedChatHooks:__init()
 
 	-- Subscribe to events.
 	self.m_DisableMouseEvent = Events:Subscribe('AC:DisableMouse', self, self.OnDisableMouse)
+	self.m_EnableMouseEvent = Events:Subscribe('AC:EnableMouse', self, self.OnEnableMouse)
 end
 
 function AdvancedChatHooks:OnInputConceptEvent(p_Hook, p_EventType, p_Action)
@@ -19,28 +20,24 @@ function AdvancedChatHooks:OnInputConceptEvent(p_Hook, p_EventType, p_Action)
 	print("OnInputConceptEvent")
 
 	if p_Action == UIInputAction.UIInputAction_SayAllChat and p_EventType == UIInputActionEventType.UIInputActionEventType_Pressed then
-		--WebUI:ExecuteJS('AdvancedChat.trigger("enable_typing", "all")')
 		m_StoreManager:Dispatch("EnableTyping", "all")
 		p_Hook:Pass(UIInputAction.UIInputAction_None, p_EventType)
 		return
 	end
 
 	if p_Action == UIInputAction.UIInputAction_TeamChat and p_EventType == UIInputActionEventType.UIInputActionEventType_Pressed then
-		--WebUI:ExecuteJS('AdvancedChat.trigger("enable_typing", "team")')
 		m_StoreManager:Dispatch("EnableTyping", "team")
 		p_Hook:Pass(UIInputAction.UIInputAction_None, p_EventType)
 		return
 	end
 
 	if p_Action == UIInputAction.UIInputAction_SquadChat and p_EventType == UIInputActionEventType.UIInputActionEventType_Pressed then
-		--WebUI:ExecuteJS('AdvancedChat.trigger("enable_typing", "sqd")')
 		m_StoreManager:Dispatch("EnableTyping", "squad")
 		p_Hook:Pass(UIInputAction.UIInputAction_None, p_EventType)
 		return
 	end
 
 	if p_Action == UIInputAction.UIInputAction_ToggleChat and p_EventType == UIInputActionEventType.UIInputActionEventType_Pressed then
-		--WebUI:ExecuteJS('AdvancedChat.trigger("toggle_mode")')
 		m_StoreManager:Dispatch("ToggleDisplayMode")
 		p_Hook:Pass(UIInputAction.UIInputAction_None, p_EventType)
 		return
@@ -52,8 +49,9 @@ end
 function AdvancedChatHooks:OnEnableCursorMode(p_Hook, p_Enable, p_Cursor)
 	-- Here we store the current cursor mode as requested by the
 	-- engine in order to restore it later on.
+
+	print("OnEnableCursorMode, enable: "..tostring(p_Enable))
 	self.m_CursorMode = p_Enable
-	print("OnEnableCursorMode")
 end
 
 function AdvancedChatHooks:OnDisableMouse()
@@ -68,6 +66,23 @@ function AdvancedChatHooks:OnDisableMouse()
 
 	-- Otherwise, we will proceed to disabling it.
 	WebUI:DisableMouse()
+end
+
+function AdvancedChatHooks:OnEnableMouse()
+	-- The WebUI has requested us to enable mouse input.
+	-- If mouse input is already enabled we will ignore
+	-- this request.
+
+	print("OnEnableMouse")
+	if self.m_CursorMode then
+		print("mouse already enabled, ignoring")
+		return
+	end
+
+	print("mouse disabled, enabling")
+
+	-- Otherwise, we will proceed to enabling it.
+	WebUI:EnableMouse()
 end
 
 return AdvancedChatHooks

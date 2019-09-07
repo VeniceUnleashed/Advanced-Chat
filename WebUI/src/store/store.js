@@ -136,7 +136,7 @@ export default new Vuex.Store({
 
             // Enable mouse and keyboard input.
             vm.$vext.Call('EnableKeyboard');
-            vm.$vext.Call('EnableMouse');
+            vm.$vext.DispatchEventLocal('AC:EnableMouse');
         },
 
         DisableTyping ({ commit, dispatch, getters }) {

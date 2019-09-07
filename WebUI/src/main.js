@@ -14,11 +14,6 @@ global.StoreCommit = (type, payload) => {
     store.commit(type, payload);
 };
 
-/* global.ExecuteMethod = (type, payload) => {
-  if (vm.$children[0][type])
-    vm.$children[0][type](payload);
-}; */
-
 global.debug = window.location.href.indexOf('webui') === -1;
 
 if (debug) {
