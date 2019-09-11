@@ -38,22 +38,15 @@ export default {
         OnKeyPressed (event) {
             switch (event.key) {
             case 'Enter':
-                console.log('enter key was pressed!');
-
                 this.OnSubmit(event);
                 break;
             case 'Escape':
-                console.log('escape key was pressed!');
                 this.$store.dispatch('DisableTyping');
                 break;
             case 'ArrowUp':
-            // TODO
-                console.log('up key was pressed!');
                 this.$emit('scroll-up');
                 break;
             case 'ArrowDown':
-            // TODO
-                console.log('down key was pressed!');
                 this.$emit('scroll-down');
                 break;
             }
@@ -90,7 +83,7 @@ export default {
       border: none;
       color: #fff;
       line-height: 20px;
-      font-family: '$MENU_medium';
+      font-family: 'Blinker';
       font-size: 13px;
       padding: 0 10px 0 45px;
 
@@ -105,7 +98,7 @@ export default {
       top: 5px;
       left: 5px;
       text-transform: uppercase;
-      font-family: '$MENU_medium';
+      font-family: 'Blinker';
       font-size: 13px;
     }
 

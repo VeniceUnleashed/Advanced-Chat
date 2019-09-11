@@ -48,11 +48,12 @@ export default {
 </script>
 
 <style lang="scss">
-  /*@import "compass";*/
-  /*@import "compass/reset";*/
+  @font-face {
+    font-family: 'Blinker';
+    src: url('assets/font/Blinker-Regular.ttf');
+  }
 
   #app {
-    // background-color: transparent;
     /*background: #000 url('assets/img/bf3bg-spawnscreen.png') no-repeat;*/
     margin: 0;
     padding: 0;
@@ -64,7 +65,7 @@ export default {
     left: 0;
     right: 0;
     bottom: 0;
-    font-family: '$MENU_medium';
+    font-family: 'Blinker';
     color: #FFF;
     -webkit-font-smoothing: antialiased;
     //@include user-select(none);

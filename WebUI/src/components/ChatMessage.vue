@@ -21,13 +21,13 @@ export default {
     text-shadow: 0 0 6px #1551a0;
 
     .author {
-      font-family: '$MENU_medium';
+      font-family: 'Blinker';
       font-size: 14px;
       margin-right: 8px;
     }
 
     .content {
-      font-family: '$MENU_medium';
+      font-family: 'Blinker';
       font-size: 13px;
     }
 
@@ -62,8 +62,8 @@ export default {
         color: #D8FF80;
         text-shadow: 0 0 6px #245C00;
       }
-      .author:before {
-        content: "★ "
+      .author:after {
+        content: " ★"
       }
     }
 
