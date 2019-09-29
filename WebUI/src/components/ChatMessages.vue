@@ -19,27 +19,27 @@ export default {
     },
     watch: {
         GetMessages: function () {
-        		// before the messages array changes, this function will be fired.
-						const container = this.$refs.messages;
+            // before the messages array changes, this function will be fired.
+            const container = this.$refs.messages;
 
-						// check if we need to scroll to the bottom after updating messages
-						if (container.scrollHeight - container.scrollTop === container.clientHeight) {
-								this.$nextTick(() => { container.scrollTop = container.scrollHeight; });
-						}
+            // check if we need to scroll to the bottom after updating messages
+            if (container.scrollHeight - container.scrollTop === container.clientHeight) {
+                this.$nextTick(() => { container.scrollTop = container.scrollHeight; });
+            }
         }
     },
-		methods: {
-			ScrollUp() {
-				const container = this.$refs.messages;
-				const newScroll = container.scrollTop - 20;
-				container.scrollTop = newScroll < 0 ? 0 : newScroll;
-			},
-    	ScrollDown() {
-				const container = this.$refs.messages;
-				const newScroll = container.scrollTop + 20;
-				container.scrollTop = newScroll > container.scrollHeight ? container.scrollHeight : newScroll;
-			}
-		}
+    methods: {
+        ScrollUp() {
+            const container = this.$refs.messages;
+            const newScroll = container.scrollTop - 20;
+            container.scrollTop = newScroll < 0 ? 0 : newScroll;
+        },
+        ScrollDown() {
+            const container = this.$refs.messages;
+            const newScroll = container.scrollTop + 20;
+            container.scrollTop = newScroll > container.scrollHeight ? container.scrollHeight : newScroll;
+        }
+    }
 };
 </script>
 

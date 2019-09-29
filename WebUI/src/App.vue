@@ -38,11 +38,11 @@ export default {
 
 		methods: {
     		OnScrollUp () {
-    				this.$refs.chatMessages.ScrollUp();
-				},
-				OnScrollDown () {
-					this.$refs.chatMessages.ScrollDown();
-				}
+                this.$refs.chatMessages.ScrollUp();
+            },
+            OnScrollDown () {
+                this.$refs.chatMessages.ScrollDown();
+            }
 		}
 };
 </script>

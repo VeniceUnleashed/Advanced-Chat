@@ -149,12 +149,13 @@ export default new Vuex.Store({
 
             case 0:
             case 2:
-                dispatch('HideChatBox', -1);
+                dispatch('HideChatBox');
                 break;
             }
 
             // Disable mouse and keyboard input.
             vm.$vext.Call('DisableKeyboard');
+            vm.$vext.Call('SendToBack');
             vm.$vext.DispatchEventLocal('AC:DisableMouse');
         },
 
