@@ -4,7 +4,7 @@ import store from './store/store';
 import ChatForm from './components/ChatForm.vue';
 import ChatMessage from './components/ChatMessage';
 import ChatMessages from './components/ChatMessages';
-import { VextConnectorPlugin } from './plugins';
+import VextPlugin from 'vue-vext-plugin';
 
 global.StoreDispatch = (type, payload) => {
     store.dispatch(type, payload);
@@ -41,8 +41,7 @@ if (process.env.NODE_ENV === 'development') {
 Vue.component('chat-form', ChatForm);
 Vue.component('chat-message', ChatMessage);
 Vue.component('chat-messages', ChatMessages);
-
-Vue.use(VextConnectorPlugin);
+Vue.use(VextPlugin);
 
 global.vm = new Vue({
     el: '#app',

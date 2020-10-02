@@ -132,11 +132,11 @@ export default new Vuex.Store({
             dispatch('ShowChatBox', -1);
 
             // Show both brings our UI to the front and shows it.
-            vm.$vext.Call('Show');
+            this._vm.$vext.Call('Show');
 
             // Enable mouse and keyboard input.
-            vm.$vext.Call('EnableKeyboard');
-            vm.$vext.DispatchEventLocal('AC:EnableMouse');
+            this._vm.$vext.Call('EnableKeyboard');
+            this._vm.$vext.DispatchEventLocal('AC:EnableMouse');
         },
 
         DisableTyping ({ commit, dispatch, getters }) {
@@ -154,9 +154,9 @@ export default new Vuex.Store({
             }
 
             // Disable mouse and keyboard input.
-            vm.$vext.Call('DisableKeyboard');
-            vm.$vext.Call('SendToBack');
-            vm.$vext.DispatchEventLocal('AC:DisableMouse');
+            this._vm.$vext.Call('DisableKeyboard');
+            this._vm.$vext.Call('SendToBack');
+            this._vm.$vext.DispatchEventLocal('AC:DisableMouse');
         },
 
         ShowChatBox ({ commit, dispatch, getters }, timeOut) {

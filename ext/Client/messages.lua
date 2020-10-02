@@ -74,7 +74,7 @@ function AdvancedChatMessages:OnCreateChatMessage(p_Hook, p_Message, p_Channel, 
 
 	-- A new chat message is being created; 
 	-- prevent the game from rendering it.
-	p_Hook:Return(UITextMessageType.Last)
+	p_Hook:Return()
 end
 
 return AdvancedChatMessages
