@@ -5,7 +5,7 @@ class 'AdvancedChat'
 
 function AdvancedChat:__init()
 	-- Subscribe to events.
-	self.m_ExtensionLoadedEvent = Events:Subscribe('ExtensionLoaded', self, self.OnLoaded)
+	self.m_ExtensionLoadedEvent = Events:Subscribe('Extension:Loaded', self, self.OnLoaded)
 	self.m_ChatMessageEvent = Events:Subscribe('AC:SendChatMessage', self, self.OnSendChatMessage)
 
 	-- Initialize the other components.
@@ -43,6 +43,8 @@ function AdvancedChat:OnSendChatMessage(p_Contents)
 		return
 	end
 
+	print("message: "..s_Message..", target: "..s_Target)
+
 	-- Dispatch message based on the specified target.
 	if s_Target == 'all' then
 		ChatManager:SendMessage(s_Message)
@@ -50,12 +52,12 @@ function AdvancedChat:OnSendChatMessage(p_Contents)
 	end
 
 	if s_Target == 'team' then
-		ChatManager:SendMessage(s_Message, s_LocalPlayer.teamID)
+		ChatManager:SendMessage(s_Message, s_LocalPlayer.teamId)
 		return
 	end
 
-	if s_Target == 'sqd' then
-		ChatManager:SendMessage(s_Message, s_LocalPlayer.teamID, s_LocalPlayer.squadID)
+	if s_Target == 'squad' then
+		ChatManager:SendMessage(s_Message, s_LocalPlayer.teamId, s_LocalPlayer.squadId)
 		return
 	end
 

@@ -1,0 +1,15 @@
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+*.vuic
+WebUI/dist/*
+WebUI/node_modules/*
+WebUI/.DS_Store
+WebUI/node_modules/
+WebUI/dist/
+WebUI/npm-debug.log
+WebUI/yarn-error.log
+Tools/*
