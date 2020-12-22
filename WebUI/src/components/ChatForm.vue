@@ -31,6 +31,7 @@ export default {
             this.$vext.DispatchEventLocal('AC:SendChatMessage', this.GetTarget + ':' + this.inputMessage);
 
             this.ResetInputMessage();
+            this.$store.dispatch('DisableTyping');
         },
         ResetInputMessage () {
             this.inputMessage = '';
