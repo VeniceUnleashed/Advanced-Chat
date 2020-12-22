@@ -1,6 +1,5 @@
 <template>
   <div class="chat-message" :class="message.target">
-
     <label class="author">{{ message.author}}:</label>
     <span class="content">{{ message.content}}</span>
   </div>

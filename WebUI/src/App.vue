@@ -5,9 +5,8 @@
       <chat-messages ref="chatMessages"></chat-messages>
       <chat-form v-on:scroll-up="OnScrollUp" v-on:scroll-down="OnScrollDown"></chat-form>
     </div>
-
     <div id="toggle-message" v-show="IsDisplayModeShown">Display Mode: {{ DisplayModeText }}</div>
-  </div>
+</div>
 </template>
 
 <script>
@@ -36,14 +35,14 @@ export default {
         }
     },
 
-		methods: {
-    		OnScrollUp () {
-                this.$refs.chatMessages.ScrollUp();
-            },
-            OnScrollDown () {
-                this.$refs.chatMessages.ScrollDown();
-            }
-		}
+    methods: {
+        OnScrollUp () {
+            this.$refs.chatMessages.ScrollUp();
+        },
+        OnScrollDown () {
+            this.$refs.chatMessages.ScrollDown();
+        }
+    }
 };
 </script>
 

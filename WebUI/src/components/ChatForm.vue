@@ -1,9 +1,10 @@
 <template>
-    <div id="chat-form" v-show="IsTypingActive">
-
-		  <input ref="messageInput" type="text" class="message-input" maxLength="127"
-                 v-model="inputMessage" v-on:keyup="OnKeyPressed" v-on:blur="OnBlur"/>
-		  <label ref="target" class="chat-target">{{ GetTarget }}</label>
+  <div id="chat-form" v-show="IsTypingActive">
+    <input ref="messageInput" type="text" class="message-input" maxLength="127"
+        v-model="inputMessage" v-on:keyup="OnKeyPressed" v-on:blur="OnBlur"/>
+      <label ref="target" class="chat-target">
+        {{ GetTarget }}
+      </label>
     </div>
 </template>
 
@@ -59,7 +60,7 @@ export default {
     watch: {
         IsTypingActive (shouldFocus) {
             if (shouldFocus) {
-              this.$nextTick(() => this.$refs.messageInput.focus());
+                this.$nextTick(() => this.$refs.messageInput.focus());
             }
         }
     }
