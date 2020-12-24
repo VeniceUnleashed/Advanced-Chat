@@ -17,8 +17,6 @@ end
 function AdvancedChatHooks:OnInputConceptEvent(p_Hook, p_EventType, p_Action)
 	-- If this is a chat-related input concept event then filter it
 	-- to prevent the game from showing the default chat dialog.
-	print("OnInputConceptEvent")
-
 	if p_Action == UIInputAction.UIInputAction_SayAllChat and p_EventType == UIInputActionEventType.UIInputActionEventType_Pressed then
 		m_StoreManager:Dispatch("EnableTyping", "all")
 		p_Hook:Pass(UIInputAction.UIInputAction_None, p_EventType)
@@ -50,7 +48,6 @@ function AdvancedChatHooks:OnEnableCursorMode(p_Hook, p_Enable, p_Cursor)
 	-- Here we store the current cursor mode as requested by the
 	-- engine in order to restore it later on.
 
-	print("OnEnableCursorMode, enable: "..tostring(p_Enable))
 	self.m_CursorMode = p_Enable
 end
 
@@ -59,7 +56,6 @@ function AdvancedChatHooks:OnDisableMouse()
 	-- If mouse input was previously enabled by the engine
 	-- we will ignore this request.
 
-	print("OnDisableMouse")
 	if self.m_CursorMode then
 		return
 	end
@@ -73,13 +69,9 @@ function AdvancedChatHooks:OnEnableMouse()
 	-- If mouse input is already enabled we will ignore
 	-- this request.
 
-	print("OnEnableMouse")
 	if self.m_CursorMode then
-		print("mouse already enabled, ignoring")
 		return
 	end
-
-	print("mouse disabled, enabling")
 
 	-- Otherwise, we will proceed to enabling it.
 	WebUI:EnableMouse()

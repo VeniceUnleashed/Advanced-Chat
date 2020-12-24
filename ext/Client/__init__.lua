@@ -43,8 +43,6 @@ function AdvancedChat:OnSendChatMessage(p_Contents)
 		return
 	end
 
-	print("message: "..s_Message..", target: "..s_Target)
-
 	-- Dispatch message based on the specified target.
 	if s_Target == 'all' then
 		ChatManager:SendMessage(s_Message)
