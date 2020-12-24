@@ -20,22 +20,20 @@ export default {
     text-shadow: 0 0 6px #1551a0;
 
     .author {
-      font-family: 'Blinker';
+      font-family: 'Blinker', serif;
       font-size: 14px;
       margin-right: 8px;
     }
 
     .content {
-      font-family: 'Blinker';
+      font-family: 'Blinker', serif;
       font-size: 13px;
     }
-
     &.all {
       .author {
         text-shadow: 0 0 6px #002A61;
       }
     }
-
     &.team {
       .author {
         color: #74edff;
