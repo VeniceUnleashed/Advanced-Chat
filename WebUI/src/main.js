@@ -16,7 +16,7 @@ global.StoreCommit = (type, payload) => {
 
 global.debug = window.location.href.indexOf('webui') === -1;
 
-if (debug) {
+if (global.debug) {
     console.log('Running UI on debug mode');
     setTimeout(() => {
         StoreCommit('AddMessage', { author: 'FoolHen', content: 'Talking in global chat', target: 'all' });

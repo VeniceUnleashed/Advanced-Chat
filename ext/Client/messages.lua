@@ -12,8 +12,6 @@ function AdvancedChatMessages:OnCreateChatMessage(p_Hook, p_Message, p_Channel, 
 		return
 	end
 
-	print("OnCreateChatMessage")
-
 	-- Get the player sending the message, and our local player.
 	local s_OtherPlayer = PlayerManager:GetPlayerById(p_PlayerId)
 	local s_LocalPlayer = PlayerManager:GetLocalPlayer()
@@ -27,7 +25,6 @@ function AdvancedChatMessages:OnCreateChatMessage(p_Hook, p_Message, p_Channel, 
 		local s_String = p_Message:gsub("^Admin: ", '')
 
 		s_Table = {author = "Admin", content = s_String, target = "admin"}
-		print('OnMessage, '.. json.encode(s_Table))
 		m_StoreManager:Dispatch("OnMessage", s_Table)
 
 		goto continue
@@ -67,12 +64,11 @@ function AdvancedChatMessages:OnCreateChatMessage(p_Hook, p_Message, p_Channel, 
 	end
 
 	s_Table = {author = s_OtherPlayer.name, content = p_Message, target = s_Target}
-	print('OnMessage, '.. json.encode(s_Table))
 	m_StoreManager:Dispatch("OnMessage", s_Table)
 
 	::continue::
 
-	-- A new chat message is being created; 
+	-- A new chat message is being created;
 	-- prevent the game from rendering it.
 	p_Hook:Return()
 end
