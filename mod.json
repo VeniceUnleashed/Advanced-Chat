@@ -5,5 +5,9 @@
 	"URL": "http://veniceunleashed.net",
 	"Version": "4",
 	"HasWebUI": true,
-	"HasVeniceEXT": true
+	"HasVeniceEXT": true,
+	"Tags": ["advanced-chat"],
+	"Dependencies": {
+		"veniceext": "^1.0.0"
+	}
 }
