@@ -29,12 +29,12 @@ export default {
         }
     },
     methods: {
-        ScrollUp() {
+        ScrollUp () {
             const container = this.$refs.messages;
             const newScroll = container.scrollTop - 20;
             container.scrollTop = newScroll < 0 ? 0 : newScroll;
         },
-        ScrollDown() {
+        ScrollDown () {
             const container = this.$refs.messages;
             const newScroll = container.scrollTop + 20;
             container.scrollTop = newScroll > container.scrollHeight ? container.scrollHeight : newScroll;
